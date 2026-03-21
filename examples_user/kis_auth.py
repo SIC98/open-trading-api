@@ -678,7 +678,7 @@ class KISWebSocket:
 
                 dm = data_map[tr_id]
                 d = d1[3]
-                if dm.get("encrypt", None) == "Y":
+                if d1[0] == "1" and dm.get("key") and dm.get("iv"):
                     d = aes_cbc_base64_dec(dm["key"], dm["iv"], d)
 
                 df = pd.read_csv(
