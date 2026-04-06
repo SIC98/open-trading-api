@@ -730,6 +730,11 @@ class KISWebSocket:
                 self.retry_count += 1
                 await asyncio.sleep(1)
 
+        if self.retry_count >= self.max_retries:
+            raise ConnectionError(
+                f"WebSocket max retries ({self.max_retries}) exhausted"
+            )
+
     # func
     @classmethod
     async def send(
